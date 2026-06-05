@@ -1,0 +1,47 @@
+{% extends "clienthome.html" %}
+
+{% block body %}
+<div class="container mt-4">
+    <h2 class="text-center">My Bookings</h2>
+     
+    
+        <table class="table table-bordered table-responsive text-white">
+            <thead>
+                <tr>
+                    <th>Booking ID</th>
+                    <th>Vehicle</th>
+                    <th>Booking Type</th>
+                    <th>Pickup Date</th>
+                    <th>Dropoff Date</th>
+                    <th>Total Amount</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for booking in bookings %}
+                <tr>
+                    <td>{{ booking.booking_id }}</td>
+                    <td>{{ booking.vehicle.name }}</td>
+                    <td>{{ booking.booking_type }}</td>
+                    <td>{{ booking.pickup_date }}</td>
+                    <td>{{ booking.dropoff_date }}</td>
+                    <td>₹{{ booking.total_amount }}</td>
+                    <td>{{ booking.status }}</td>
+                    <td>
+                        {% if booking.status != "Cancelled" %}
+                            <form action="{% url 'clientapp:cancel_booking' booking.id %}" method="POST">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-danger">Cancel</button>
+                            </form>
+                        {% else %}
+                            <span class="text-danger">Cancelled</span>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    
+</div>
+{% endblock %}

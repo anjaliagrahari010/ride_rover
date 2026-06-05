@@ -1,0 +1,13 @@
+{% extends "clienthome.html" %}
+
+{% block body %}
+<div class="container mt-4">
+    <h2>Cancel Booking</h2>
+    <p>Are you sure you want to cancel your booking for <strong>{{ booking.vehicle.name }}</strong>?</p>
+    <form method="POST">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Confirm Cancel</button>
+        <a href="{% url 'clientapp:clientdash' %}" class="btn btn-secondary">Go Back</a>
+    </form>
+</div>
+{% endblock %}
