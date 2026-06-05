@@ -28,10 +28,31 @@ DEBUG = False
 
 ALLOWED_HOSTS = [".onrender.com",]
 
+import cloudinary
+
+CLOUDINARY_STORAGE = {
+        'CLOUD_NAME': 'dj6a7orr7',
+    'API_KEY': '916985697498213',
+    'API_SECRET': 'ABoMab1JWXVxQtV7j_QKG3dEHow',
+}
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
+
+
+
+
+
+
+
+
+
 
 # Application definition
 
 INSTALLED_APPS = [
+    'cloudinary',
+    'cloudinary_storage',
     'user',
     'adminapp',
     'clientapp',
@@ -128,6 +149,13 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 
+import os
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': os.getenv('dj6a7orr7'),
+    'API_KEY': os.getenv('916985697498213'),
+    'API_SECRET': os.getenv('ABoMab1JWXVxQtV7j_QKG3dEHow'),
+}
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
