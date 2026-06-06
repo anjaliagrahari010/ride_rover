@@ -8,7 +8,8 @@ from .models import Booking
 from adminapp.forms import BookingForm
 from django.utils import timezone
 
-
+from django.http import HttpResponse
+from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib import messages
@@ -19,6 +20,13 @@ from django.views.decorators.csrf import csrf_exempt
 from django.utils.timezone import now 
 
 import json
+
+
+def create_admin(request):
+    if not User.objects.filter(username='admin').exists():
+        User.objects.create_superuser('admin', 'admin@gmail.com', 'admin')
+        return HttpResponse('Superuser created!')
+    return HttpResponse('Already exists!')
 
 def index(request):
     return render(request,'index.html')
