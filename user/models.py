@@ -40,7 +40,7 @@ class Vehicle(models.Model):
     name = models.CharField(max_length=100)
     price_per_day = models.DecimalField(max_digits=10, decimal_places=2)
     security_deposit = models.DecimalField(max_digits=10, decimal_places=2)
-    image = models.FileField(upload_to="")  
+    image = models.FileField(upload_to="vehicles/")  
 
 def vehicle_id(self):
         return f"V{self.id}"
