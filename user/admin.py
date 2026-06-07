@@ -13,7 +13,7 @@ admin.site.register(BookVehicle)
 admin.site.register(Inquiry)
 admin.site.register(Booking)
 class BookingAdmin(admin.ModelAdmin):
-    list_display = ('booking_id', 'booking_type', 'pickup_date', 'dropoff_date','total_amount' 'created_at')
+    list_display = ('booking_id', 'booking_type', 'pickup_date', 'dropoff_date','total_amount', 'created_at')
     search_fields = ('booking_id', 'booking_type')
     list_filter = ('booking_type',)
 
