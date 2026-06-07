@@ -23,10 +23,16 @@ import json
 
 
 def create_admin(request):
-    if not User.objects.filter(username='admin').exists():
-        User.objects.create_superuser('admin', 'admin@gmail.com', 'admin')
+    if User.objects.filter(username='admin').exists():
+        user = User.objects.get(username='admin')
+        user.set_password('admin123')
+        user.is_staff = True
+        user.is_superuser = True
+        user.save()
+        return HttpResponse('Password reset to admin123!')
+    else:
+        User.objects.create_superuser('admin', 'admin@gmail.com', 'admin123')
         return HttpResponse('Superuser created!')
-    return HttpResponse('Already exists!')
 
 def index(request):
     return render(request,'index.html')
